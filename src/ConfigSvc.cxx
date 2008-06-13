@@ -4,7 +4,7 @@
 @brief keeps track of the GEM trigger configuration
 @author Martin Kocian
 
-$Header: /nfs/slac/g/glast/ground/cvs/Trigger/src/TrgConfigSvc.cxx,v 1.3 2007/10/04 00:26:29 kocian Exp $
+$Header: /nfs/slac/g/glast/ground/cvs/ConfigSvc/src/ConfigSvc.cxx,v 1.1.1.1 2008/06/12 02:02:32 echarles Exp $
 
 */
 
@@ -24,6 +24,7 @@ $Header: /nfs/slac/g/glast/ground/cvs/Trigger/src/TrgConfigSvc.cxx,v 1.3 2007/10
 #include "MootSvc/IMootSvc.h"
 #include "configData/fsw/FswEfcSampler.h"
 #include "configData/gem/TrgConfigParser.h"
+#include "facilities/commonUtilities.h"
 
 #include <set>
 #include <stdlib.h>
@@ -34,8 +35,9 @@ $Header: /nfs/slac/g/glast/ground/cvs/Trigger/src/TrgConfigSvc.cxx,v 1.3 2007/10
 static SvcFactory<ConfigSvc> a_factory;
 const ISvcFactory& ConfigSvcFactory = a_factory; 
 
+
 ConfigSvc::ConfigSvc(const std::string& name,ISvcLocator* svc) 
-  : Service(name,svc),m_mootSvc(0),m_trgConfig(0),m_noMOOTMask(0),m_mootKey(0) {
+  : Service(name,svc),m_mootSvc(0),m_trgConfig(0),m_noMOOTMask(0),m_mootKey(0),m_latcKey(0){
   // Purpose and Method: Constructor - Declares and sets default properties
   //                     
   // Inputs: service name and locator 
@@ -175,7 +177,7 @@ const TrgConfig* ConfigSvc::getTrgConfig() const {
     }
     return m_trgConfig;
   }
-  if ( ! newMootKey() ) {
+  if ( ! newMootKey() &&  m_trgConfig != 0) {
     // same key, just return the TrgConfig
     return m_trgConfig;
   }
@@ -183,13 +185,13 @@ const TrgConfig* ConfigSvc::getTrgConfig() const {
   if ( m_noMOOTMask & ( 1 << GEM ) ) {
     gemFileName = m_gemXmlFile.value();
   } else {
-    CalibData::MootParm* gem = m_mootSvc->getGemParm(latcKey);
+    const CalibData::MootParm* gem = m_mootSvc->getGemParm(latcKey);    
     getFullPath( gem->getSrc(), gemFileName );
   }
   if ( m_noMOOTMask & ( 1 << ROI ) ) {
     roiFileName = m_roiXmlFile.value();
   } else {
-    CalibData::MootParm* roi = m_mootSvc->getRoiParm(latcKey);
+    const CalibData::MootParm* roi = m_mootSvc->getRoiParm(latcKey);
     getFullPath( roi->getSrc(), roiFileName );
   }
   if ( ! readTrgConfig( gemFileName, roiFileName ) ) {
@@ -224,12 +226,23 @@ const FswEfcSampler* ConfigSvc::getFSWPrescalerInfo(enums::Lsf::Mode mode, unsig
   }
   return getFswSampler(mootMode,handlerId);
 }
-  
+
+
+void ConfigSvc::getFullPath(const std::string& mootPath, std::string& fullPath) const {
+  std::string archEnv("MOOT_ARCHIVE");
+  fullPath = facilities::commonUtilities::joinPath( facilities::commonUtilities::getEnvironment( archEnv ),
+						    mootPath );
+}
+
+
+
 /// check to see if we have a new MOOT key
 bool ConfigSvc::newMootKey() const {
-  unsigned int newKey = m_mootSvc->getMootConfigKey();
-  if ( m_mootKey == newKey ) return false;
-  m_mootKey = newKey;
+  unsigned newMootKey = m_mootSvc->getMootConfigKey();
+  unsigned newLatcKey = m_mootSvc->getHardwareKey();
+  if ( m_mootKey == newMootKey && m_latcKey == newLatcKey ) return false;
+  m_mootKey = newMootKey;  
+  m_latcKey = newLatcKey;
   clearCache();
   return true;
 }

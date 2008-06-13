@@ -5,7 +5,7 @@
 @author Eric Charles
    From Martin Kocian's TrgConfigSvc
 
-$Header: /nfs/slac/g/glast/ground/cvs/Trigger/src/TrgConfigSvc.h,v 1.2 2007/10/04 00:26:30 kocian Exp $
+$Header: /nfs/slac/g/glast/ground/cvs/ConfigSvc/src/ConfigSvc.h,v 1.1.1.1 2008/06/12 02:02:32 echarles Exp $
 
 */
 #ifndef TrgConfigSvc_H
@@ -43,8 +43,6 @@ protected:
   static unsigned filterSlotKey(unsigned lpaMode, unsigned handlerId) {
     return (lpaMode << 8) | handlerId;
   }
-
-  static void getFullPath( const std::string& mootPath, std::string& fullPath );
 
   enum ConfigPart {
     // First FSW filters, use the handler IDs
@@ -94,7 +92,10 @@ public:
       
 
 protected:
-  
+
+  /// Get the full path of a file
+  void getFullPath( const std::string& mootPath, std::string& fullPath ) const;
+ 
   /// check to see if we have a new MOOT key
   bool newMootKey() const;
  
@@ -129,6 +130,7 @@ private:
 
   mutable unsigned                                 m_noMOOTMask;
   mutable unsigned                                 m_mootKey;
+  mutable unsigned                                 m_latcKey;
 };
 
 
