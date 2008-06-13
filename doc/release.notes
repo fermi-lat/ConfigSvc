@@ -1,0 +1,9 @@
+/** @file release.notes
+ * Package MootSvc
+ * Coordinator:  E. Charles
+ *                  EOH
+
+   v0r1    13-Jun-2008  eac  Minor Fixes to also get LATC key and use MOOT_ARCHIVE envar
+   v0r0    12-Jun-2008  eac  Initial release
+
+ */
