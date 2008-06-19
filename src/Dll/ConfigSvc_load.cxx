@@ -3,7 +3,7 @@
 * @brief This is needed for forcing the linker to load all components
 * of the library.
 *
-*  $Header: /nfs/slac/g/glast/ground/cvs/Trigger/src/Trigger_load.cxx,v 1.9 2007/09/05 16:43:38 heather Exp $
+*  $Header: /nfs/slac/g/glast/ground/cvs/ConfigSvc/src/ConfigSvc_load.cxx,v 1.1.1.1 2008/06/12 02:02:32 echarles Exp $
 */
 
 #include "GaudiKernel/DeclareFactoryEntries.h"
