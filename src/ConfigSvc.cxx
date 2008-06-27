@@ -4,7 +4,7 @@
 @brief keeps track of the GEM trigger configuration
 @author Martin Kocian
 
-$Header: /nfs/slac/g/glast/ground/cvs/ConfigSvc/src/ConfigSvc.cxx,v 1.4 2008/06/19 20:44:52 echarles Exp $
+$Header: /nfs/slac/g/glast/ground/cvs/ConfigSvc/src/ConfigSvc.cxx,v 1.5 2008/06/22 00:24:20 lsrea Exp $
 
 */
 
@@ -322,6 +322,7 @@ FswEfcSampler* ConfigSvc::getFswSampler(unsigned lpaMode, unsigned handlerId) co
   CalibData::MootFilterCfg* filterCfg = m_mootSvc->getActiveFilter(lpaMode,handlerId,handlerName);
   if ( filterCfg == 0 ) {
     log << MSG::ERROR << "No active filter for mode " << lpaMode << " and handlerId " << handlerId << endreq;
+    m_noMOOTMask |= ( 1 << handlerId );
     return 0;
   }
   std::string fullPath;
