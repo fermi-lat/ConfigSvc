@@ -4,7 +4,7 @@
 @brief keeps track of the GEM trigger configuration
 @author Martin Kocian
 
-$Header: /nfs/slac/g/glast/ground/cvs/ConfigSvc/src/ConfigSvc.cxx,v 1.5 2008/06/22 00:24:20 lsrea Exp $
+$Header: /nfs/slac/g/glast/ground/cvs/ConfigSvc/src/ConfigSvc.cxx,v 1.6 2008/06/27 02:26:54 echarles Exp $
 
 */
 
@@ -37,7 +37,7 @@ const ISvcFactory& ConfigSvcFactory = a_factory;
 
 
 ConfigSvc::ConfigSvc(const std::string& name,ISvcLocator* svc) 
-  : Service(name,svc),m_mootSvc(0),m_trgConfig(0),m_noMOOTMask(0),m_mootKey(0),m_latcKey(0){
+  : Service(name,svc),m_mootSvc(0),m_trgConfig(0),m_noMOOTMask(0),m_mootKey(LSF_INVALID_UINT),m_latcKey(LSF_INVALID_UINT){
   // Purpose and Method: Constructor - Declares and sets default properties
   //                     
   // Inputs: service name and locator 
