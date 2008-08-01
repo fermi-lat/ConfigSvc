@@ -1,5 +1,5 @@
 // Configuration Access options when not using MOOT
-// $Header: /nfs/slac/g/glast/ground/cvs/GlastRelease-scons/ConfigSvc/src/configOptions_noMoot.txt,v 1.4 2008/07/01 15:21:48 echarles Exp $
+// $Header: /nfs/slac/g/glast/ground/cvs/ConfigSvc/src/configOptions_noMoot.txt,v 1.5 2008/07/21 15:17:28 glastrm Exp $
 
 // DLLs
 ApplicationMgr.DLLs   += {"ConfigSvc"};
@@ -12,9 +12,10 @@ MootSvc.ExitOnFatal = false;  // Allow MootSvc to continue if the MOOT key isn't
 ConfigSvc.GammaFilterXml = "$(CONFIGSVCXMLPATH)/gamma_normal.xml";  
 ConfigSvc.DgnFilterXml   = "$(CONFIGSVCXMLPATH)/dgn_gem.xml";
 ConfigSvc.MipFilterXml   = "$(CONFIGSVCXMLPATH)/mip_off_axis.xml";
-ConfigSvc.HipFilterXml   = "$(CONFIGSVCXMLPATH)hip_normal.xml";
+ConfigSvc.HipFilterXml   = "$(CONFIGSVCXMLPATH)/hip_normal.xml";
 ConfigSvc.GemXml         = "$(CONFIGSVCXMLPATH)/defaultTrgConfig.xml";
-//ConfigSvc.GemXml         = "$(CONFIGSVCXMLPATH)/TRG_GEM_GEM-nomSciOps_2HzPer.xml";
+ConfigSvc.GemXml         = "$(CONFIGSVCXMLPATH)/TRG_GEM_GEM-nomSciOps_noCno_2HzPer.xml";
+ConfigSvc.GemDftXml      = "$(CONFIGSVCXMLPATH)/TRG_GEM_DFT-nomSciOps_noCno_2HzPer.xml";
 ConfigSvc.RoiXml         = "$(CONFIGSVCXMLPATH)/TRG_ROI_GEM-roiShadow.xml";
 MootSvc.NoMoot = true;
 

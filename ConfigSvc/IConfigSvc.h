@@ -1,4 +1,4 @@
-//$Header: /nfs/slac/g/glast/ground/cvs/ConfigSvc/ConfigSvc/IConfigSvc.h,v 1.2 2008/06/09 19:47:07 jrb Exp $
+//$Header: /nfs/slac/g/glast/ground/cvs/ConfigSvc/ConfigSvc/IConfigSvc.h,v 1.1.1.1 2008/06/12 02:02:32 echarles Exp $
 #ifndef IConfigSvc_h
 #define IConfigSvc_h 1
 
@@ -39,7 +39,8 @@ public:
   virtual const TrgConfig* getTrgConfig() const = 0;
   
   /// get the information about the prescalers
-  virtual const FswEfcSampler* getFSWPrescalerInfo( enums::Lsf::Mode mode, unsigned handlerId ) const = 0;
+  virtual const FswEfcSampler* getFSWPrescalerInfo( enums::Lsf::Mode mode, unsigned handlerId, 
+						    unsigned int& fmxKey ) const = 0;
   
 };
 
