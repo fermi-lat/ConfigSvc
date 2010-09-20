@@ -1,7 +1,7 @@
 # -*- python -*-
-# $Header: /nfs/slac/g/glast/ground/cvs/GlastRelease-scons/ConfigSvc/SConscript,v 1.4 2009/11/10 01:56:22 jrb Exp $
+# $Header: /nfs/slac/g/glast/ground/cvs/ConfigSvc/SConscript,v 1.5 2009/11/10 20:02:43 jrb Exp $
 # Authors: Eric Charles <echarles@slac.stanford.edu>
-# Version: ConfigSvc-00-02-10
+# Version: ConfigSvc-00-02-10-gr01
 Import('baseEnv')
 Import('listFiles')
 Import('packages')
