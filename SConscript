@@ -1,7 +1,8 @@
 # -*- python -*-
-# $Header: /nfs/slac/g/glast/ground/cvs/ConfigSvc/SConscript,v 1.8 2010/06/12 17:21:40 jrb Exp $
+# $Header: /nfs/slac/g/glast/ground/cvs/GlastRelease-scons/ConfigSvc/SConscript,v 1.9 2010/12/02 00:41:25 jrb Exp $
 # Authors: Eric Charles <echarles@slac.stanford.edu>
-# Version: ConfigSvc-00-02-12
+# Version: ConfigSvc-00-03-00
+
 Import('baseEnv')
 Import('listFiles')
 Import('packages')
@@ -10,8 +11,8 @@ libEnv = baseEnv.Clone()
 
 libEnv.Tool('addLinkDeps', package='ConfigSvc', toBuild='component')
 
-ConfigSvc = libEnv.SharedLibrary('ConfigSvc',
-                                 listFiles(['src/*.cxx','src/Dll/*.cxx']))
+ConfigSvc = libEnv.ComponentLibrary('ConfigSvc',
+                                    listFiles(['src/*.cxx']))
 
 progEnv.Tool('ConfigSvcLib')
 

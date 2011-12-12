@@ -4,7 +4,7 @@
 @brief keeps track of the GEM trigger configuration
 @author Martin Kocian
 
-$Header: /nfs/slac/g/glast/ground/cvs/ConfigSvc/src/ConfigSvc.cxx,v 1.7 2008/07/01 01:45:45 echarles Exp $
+$Header: /nfs/slac/g/glast/ground/cvs/GlastRelease-scons/ConfigSvc/src/ConfigSvc.cxx,v 1.8.244.1 2010/10/08 16:20:23 heather Exp $
 
 */
 
@@ -32,8 +32,9 @@ $Header: /nfs/slac/g/glast/ground/cvs/ConfigSvc/src/ConfigSvc.cxx,v 1.7 2008/07/
 
 
 // declare the service factories for the ConfigSvc
-static SvcFactory<ConfigSvc> a_factory;
-const ISvcFactory& ConfigSvcFactory = a_factory; 
+//static SvcFactory<ConfigSvc> a_factory;
+//const ISvcFactory& ConfigSvcFactory = a_factory; 
+DECLARE_SERVICE_FACTORY(ConfigSvc);
 
 
 ConfigSvc::ConfigSvc(const std::string& name,ISvcLocator* svc) 
