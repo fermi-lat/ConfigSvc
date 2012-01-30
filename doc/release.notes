@@ -4,6 +4,7 @@
  * package manager:E. Charles
  * EOH *
 
+ ConfigSvc-00-02-12-gr01 30-Jan-2012 hmk Gaudi v21r7
  ConfigSvc-00-02-12 01-Dec-2010    jrb Make new main branch tag for SCons RM
  ConfigSvc-00-02-11 12-Jun-2010    jrb upgrades for SCons builds
  ConfigSvc-00-02-10 10-Nov-2009    jrb updates for SCons
